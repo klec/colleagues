@@ -1,0 +1,1 @@
+var colleagues_list = require('./colleagues_list');

@@ -1,0 +1,13 @@
+{
+  "name": "colleages",
+  "version": "0.0.1",
+  "devDependencies": {
+    "browser-sync": "^2.9.6",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-watch": "^4.3.5",
+    "rimraf": "^2.4.3"
+  }
+}
