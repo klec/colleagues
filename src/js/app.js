@@ -6,8 +6,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create
 
 function preload() {
     game.load.image('floor', '../img/floor.jpg');
-    game.load.image('table', '../img/desc.png');
-    game.load.image('sofa', '../img/sofa.png');
+    game.load.image('table', '../img/furniture/desc.png');
+    game.load.image('sofa', '../img/furniture/sofa.png');
     game.load.spritesheet('dude', '../img/dude.png', 60, 100);
 }
 
