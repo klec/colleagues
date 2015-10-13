@@ -7,18 +7,21 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     rimraf = require('rimraf'),
     browserSync = require('browser-sync'),
-    reload = browserSync.reload;
+    reload = browserSync.reload,
+    browserify = require('browserify'),
+    source = require('vinyl-source-stream');
 
 var path = {
     build: {
         html: './build/',
         js: './build/js/',
+        jsAppFile: './build/js/app.js',
         style: './build/css/',
         images: './build/img/'
     },
     src: {
         html: './src/*.html',
-        js: './src/js/app.js',
+        js: './src/js/**/*.js',
         style: './src/scss/styles.scss',
         images: './src/img/**/*.*'
     },
@@ -49,20 +52,6 @@ gulp.task('clean', function (cb) {
     rimraf(path.clean, cb);
 });
 
-gulp.task('style:build', function() {
-    gulp.src(path.src.style)
-        .pipe(sourcemaps.init())
-        .pipe(sass({
-            includePath: ['scss'],
-            soureMap: true,
-            errLogToConsole: true
-        }))
-        .pipe(prefixer())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(path.build.style))
-        .pipe(reload({stream: true}));
-});
-
 gulp.task('html:build', function() {
     gulp.src(path.src.html)
         .pipe(gulp.dest(path.build.html))
@@ -77,6 +66,27 @@ gulp.task('js:build', function() {
         .pipe(reload({stream: true}));
 });
 
+gulp.task('browserify', function() {
+    return browserify({ entries: [path.build.jsAppFile] })
+        .bundle()
+        .pipe(source('app.min.js'))
+        .pipe(gulp.dest(path.build.js));
+});
+
+gulp.task('style:build', function() {
+    gulp.src(path.src.style)
+        .pipe(sourcemaps.init())
+        .pipe(sass({
+            includePath: ['scss'],
+            soureMap: true,
+            errLogToConsole: true
+        }))
+        .pipe(prefixer())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(path.build.style))
+        .pipe(reload({stream: true}));
+});
+
 gulp.task('images:build', function () {
     gulp.src(path.src.images)
         .pipe(gulp.dest(path.build.images))
@@ -86,6 +96,7 @@ gulp.task('images:build', function () {
 gulp.task('build', [
     'html:build',
     'js:build',
+    'browserify',
     'images:build',
     'style:build'
 ]);
@@ -96,6 +107,7 @@ gulp.task('watch', function() {
     });
     watch([path.watch.js], function(event, cb) {
         gulp.start('js:build');
+        gulp.start('browserify');
     });
     watch([path.watch.style], function(event, cb) {
         gulp.start('style:build');

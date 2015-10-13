@@ -2,7 +2,7 @@
  * Created by klec on 9/9/15.
  */
 
-colleagues_list=[
+var colleagues_list = [
     {iterator:1, rname:"", rlastname:"", img:"http://www.speroteck.com/skin/frontend/responsivetheme/default/images/team/0-Vladyslav.jpg", ename:"Vladyslav"},    
     {iterator:2, rname:"", rlastname:"", img:"http://www.speroteck.com/skin/frontend/responsivetheme/default/images/team/1-Alexei.jpg", ename:"Alexei"},
     {iterator:3, rname:"", rlastname:"", img:"http://www.speroteck.com/skin/frontend/responsivetheme/default/images/team/2-Helen.jpg", ename:"Helen"},
@@ -52,3 +52,5 @@ colleagues_list=[
     {iterator:47, rname:"", rlastname:"", img:"http://www.speroteck.com/skin/frontend/responsivetheme/default/images/team/48-Anastasiya.jpg", ename:"Anastasiya"},
     {iterator:48, rname:"", rlastname:"", img:"http://www.speroteck.com/skin/frontend/responsivetheme/default/images/team/49-Aleksey.jpg", ename:"Aleksey"}
 ];
+
+module.exports = colleagues_list;

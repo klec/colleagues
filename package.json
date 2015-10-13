@@ -8,6 +8,10 @@
     "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-watch": "^4.3.5",
-    "rimraf": "^2.4.3"
+    "rimraf": "^2.4.3",
+    "gulp-concat": "",
+    "gulp-uglify": "",
+    "browserify": "",
+    "vinyl-source-stream": ""
   }
 }
