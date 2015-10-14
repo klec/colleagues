@@ -1,19 +1,21 @@
 var coworkers = {
-    dude: '',
+    items: {},
     initCoworkers: function(game) {
-        this.dude = game.add.sprite(0, 0, 'dude');
+        var dude = game.add.sprite(0, game.world.height - 100, 'dude');
 
         //  We need to enable physics on the player
-        game.physics.arcade.enable(this.dude);
+        game.physics.arcade.enable(dude);
 
         //  Player physics properties. Give the little guy a slight bounce.
-        this.dude.body.bounce.y = 0.2;
-        this.dude.body.gravity.y = 600;
-        this.dude.body.collideWorldBounds = true;
+        dude.body.bounce.y = 0;
+        dude.body.gravity.y = 0;
+        dude.body.collideWorldBounds = true;
 
         //  Our two animations, walking left and right.
-        this.dude.animations.add('left', [0, 1, 2, 3], 10, true);
-        this.dude.animations.add('right', [5, 6, 7, 8], 10, true);
+        dude.animations.add('left', [0, 1, 2, 3, 4, 5, 6, 7, 8], 10, true);
+        dude.animations.add('right', [9, 10, 11, 12, 13, 14, 15, 16, 17], 10, true);
+
+        this.items = dude;
     }
 };
 
