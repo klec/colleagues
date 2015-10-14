@@ -8,7 +8,7 @@ function preload() {
     game.load.image('floor', '../img/floor.jpg');
     game.load.image('table', '../img/furniture/desc.png');
     game.load.image('sofa', '../img/furniture/sofa.png');
-    game.load.spritesheet('dude', '../img/dude.png', 60, 100);
+    game.load.spritesheet('dude', '../img/dude.png', 67, 100);
 }
 
 function create() {
@@ -18,7 +18,48 @@ function create() {
     tables.initTables(game);
     sofa.initSofa(game);
     coworkers.initCoworkers(game);
+
+    cursors = game.input.keyboard.createCursorKeys();
 }
 
 function update() {
+    game.physics.arcade.collide(coworkers.items, tables.items);
+
+    coworkers.items.body.velocity.x = 0;
+
+    if (cursors.left.isDown)
+    {
+        //  Move to the left
+        coworkers.items.body.velocity.x = -100;
+
+        coworkers.items.animations.play('left');
+    }
+    else if (cursors.right.isDown)
+    {
+        //  Move to the right
+        coworkers.items.body.velocity.x = 100;
+
+        coworkers.items.animations.play('right');
+    }
+    else if (cursors.up.isDown)
+    {
+        //  Move to the right
+        coworkers.items.body.velocity.y = -100;
+
+        coworkers.items.animations.play('left');
+    }
+    else if (cursors.down.isDown)
+    {
+        //  Move to the right
+        coworkers.items.body.velocity.y = 100;
+
+        coworkers.items.animations.play('right');
+    }
+    else
+    {
+        //  Stand still
+        coworkers.items.animations.stop();
+
+        coworkers.items.frame = 1;
+    }
 }
